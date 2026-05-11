@@ -1,0 +1,25 @@
+# Arquivos de banco de dados SQL Server (não commitar dados reais)
+*.mdf
+*.ldf
+*.ndf
+
+# Arquivos de log
+*.log
+
+# Arquivos temporários
+*.tmp
+*.temp
+
+# Backups de banco
+*.bak
+
+# Arquivos de configuração com senhas (ex.: connection strings)
+# Adicione padrões específicos se houver arquivos como config.json ou appsettings.json com senhas
+# Exemplo: appsettings.json (se contiver senhas, mas atualmente não há)
+
+# Outros arquivos comuns a ignorar
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~

@@ -1,0 +1,22 @@
+-- Usar a base de dados PEDIDOS
+USE PEDIDOS;
+
+-- Exemplo 1: Subquery em WHERE - Produtos com preço acima da média
+SELECT * FROM TB_PRODUTO
+WHERE PRECO_VENDA > (SELECT AVG(PRECO_VENDA) FROM TB_PRODUTO);
+
+-- Exemplo 2: Subquery em SELECT - Número de pedidos por vendedor
+SELECT V.NOME,
+       (SELECT COUNT(*) FROM TB_PEDIDO P WHERE P.CODVEN = V.CODVEN) AS NUM_PEDIDOS
+FROM TB_VENDEDOR V;
+
+-- Exemplo 3: Subquery em FROM - Total por produto
+SELECT SUB.ID_PRODUTO, SUB.TOTAL_QTD
+FROM (SELECT ID_PRODUTO, SUM(QTD) AS TOTAL_QTD
+      FROM TB_ITENSPEDIDO
+      GROUP BY ID_PRODUTO) SUB
+WHERE SUB.TOTAL_QTD > 10;
+
+-- Exemplo 4: EXISTS - Fornecedores que fornecem produtos
+SELECT * FROM TB_FORNECEDOR F
+WHERE EXISTS (SELECT 1 FROM TB_PROD_FORN PF WHERE PF.COD_FORN = F.COD_FORN);
